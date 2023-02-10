@@ -10,7 +10,8 @@
   "devDependencies": {
     "browser-sync": "^2.27.11",
     "eslint": "7.18.0",
-    "eslint-config-htmlacademy": "2.0.0"
+    "eslint-config-htmlacademy": "2.0.0",
+    "eslint-plugin-react": "^7.32.1"
   },
   "license": "MIT",
   "dependencies": {},
