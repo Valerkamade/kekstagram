@@ -97,19 +97,19 @@ const randomNumberNoRepeat = (min, max) => {
 
 const createComment = () => {
   return {
-    id: getRandomArrayElementNoRepeat(collectAllData.user),
-    avatar: 'img/avatar-' + `${getRandomArrayElement(collectAllData.avatar)}` + '.svg',
-    message: getRandomArrayElement(collectAllData.message),
-    name: getRandomArrayElement(collectAllData.name),
+    id: getRandomArrayElementNoRepeat(idUsers),
+    avatar: 'img/avatar-' + `${getRandomArrayElement(avatars)}` + '.svg',
+    message: getRandomArrayElement(MESSAGES),
+    name: getRandomArrayElement(NAMES),
   };
 };
 const createPhoto = () => {
   return {
-    id: getRandomArrayElementNoRepeat(collectAllData.id),
-    url: 'photos/' + `${getRandomArrayElement(collectAllData.url)}` + '.jpg',
-    description: getRandomArrayElement(collectAllData.description),
-    likes: getRandomInt((collectAllData.like).min, (collectAllData.like).max),
-    comments: new Array(getRandomArrayElement(collectAllData.comment)).fill(null).map(() => createComment()),
+    id: getRandomArrayElementNoRepeat(idNumbrs),
+    url: 'photos/' + `${getRandomArrayElement(urls)}` + '.jpg',
+    description: getRandomArrayElement(DESCRIPTIONS),
+    likes: getRandomInt(MIN_LIKS, MAX_LIKS),
+    comments: new Array(getRandomArrayElement(comments)).fill(null).map(() => createComment()),
   };
 };
 
@@ -119,21 +119,8 @@ const urls = randomNumberNoRepeat(MIN_URL, MAX_URL);
 const idUsers = randomNumberNoRepeat(MIN_ID_USERS, MAX_ID_USERS);
 const comments = randomNumberNoRepeat(MIN_COMMENTS, MAX_COMMENTS);
 
-const collectAllData = {
-  avatar: avatars,
-  id: idNumbrs,
-  url: urls,
-  user: idUsers,
-  comment: comments,
-  description: DESCRIPTIONS,
-  count: POSTS_COUNT,
-  message: MESSAGES,
-  name: NAMES,
-  like: {
-    min: MIN_LIKS,
-    max: MAX_LIKS,
-  },
+const createPosts = () => {
+  return new Array(POSTS_COUNT).fill(null).map(() => createPhoto());
 }
-const posts = new Array(collectAllData.count).fill(null).map(() => createPhoto());
 
-export { posts };
+export { createPosts };

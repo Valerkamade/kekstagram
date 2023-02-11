@@ -1,4 +1,4 @@
-import { posts } from './data.js';
+import { createPosts } from './data.js';
 
-posts;
-// console.log(posts);
+createPosts();
+
