@@ -1,3 +1,5 @@
+import { setOpenBigPictuerEventListener } from './fullscreen.js';
+
 const pictureTemplate = document.querySelector('#picture').content;
 const pictureElement = pictureTemplate.querySelector('.picture');
 const picturesGillery = document.querySelector('.pictures');
@@ -12,6 +14,8 @@ const createPhoto = (obj) => {
   pictureImg.src = obj.url;
   pictureLike.textContent = obj.likes;
   pictureComments.textContent = obj.comments.length;
+
+  setOpenBigPictuerEventListener(pictureImg, obj);
 
   return newPicture;
 };
