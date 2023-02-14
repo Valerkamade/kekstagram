@@ -78,26 +78,27 @@ const getRandomArrayElementNoRepeat = (elements) => {
   return elements.shift();
 };
 
-
 const randomNumberNoRepeat = (min, max) => {
   let numbers = new Array(max);
   for (let i = 0; i < numbers.length; i++) {
     let number = getRandomInt(min, max);
-    if (numbers.includes(number)) {
-      do {
-        number = getRandomInt(min, max);
-      } while (numbers.includes(number));
-      numbers[i] = number;
-    } else {
-      numbers[i] = number;
+    while (numbers.includes(number)) {
+      number = getRandomInt(min, max);
     }
+    numbers[i] = number;
   }
   return numbers;
 };
 
+const avatars = randomNumberNoRepeat(MIN_AVATAR, MAX_AVATAR);
+const numbrsPhoto = randomNumberNoRepeat(MIN_ID_PHOTO, MAX_ID_PHOTO);
+const urls = randomNumberNoRepeat(MIN_URL, MAX_URL);
+const users = randomNumberNoRepeat(MIN_ID_USERS, MAX_ID_USERS);
+const comments = randomNumberNoRepeat(MIN_COMMENTS, MAX_COMMENTS);
+
 const createComment = () => {
   return {
-    id: getRandomArrayElementNoRepeat(idUsers),
+    id: getRandomArrayElementNoRepeat(users),
     avatar: 'img/avatar-' + `${getRandomArrayElement(avatars)}` + '.svg',
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(NAMES),
@@ -105,22 +106,17 @@ const createComment = () => {
 };
 const createPhoto = () => {
   return {
-    id: getRandomArrayElementNoRepeat(idNumbrs),
-    url: 'photos/' + `${getRandomArrayElement(urls)}` + '.jpg',
+    id: getRandomArrayElementNoRepeat(numbrsPhoto),
+    url: 'photos/' + `${getRandomArrayElementNoRepeat(urls)}` + '.jpg',
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomInt(MIN_LIKS, MAX_LIKS),
     comments: new Array(getRandomArrayElement(comments)).fill(null).map(() => createComment()),
   };
 };
 
-const avatars = randomNumberNoRepeat(MIN_AVATAR, MAX_AVATAR);
-const idNumbrs = randomNumberNoRepeat(MIN_ID_PHOTO, MAX_ID_PHOTO);
-const urls = randomNumberNoRepeat(MIN_URL, MAX_URL);
-const idUsers = randomNumberNoRepeat(MIN_ID_USERS, MAX_ID_USERS);
-const comments = randomNumberNoRepeat(MIN_COMMENTS, MAX_COMMENTS);
 
-const createPosts = () => {
-  return new Array(POSTS_COUNT).fill(null).map(() => createPhoto());
-}
+const createPosts = () => new Array(POSTS_COUNT).fill(null).map(() => createPhoto());
 
 export { createPosts };
+
+
