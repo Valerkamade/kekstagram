@@ -57,7 +57,8 @@ const renderComments = (obj) => {
 }
 
 const setOpenBigPictuerEventListener = (photo, obj) => {
-  photo.addEventListener('click', () => {
+  photo.addEventListener('click', (evt) => {
+    evt.preventDefault();
     visibility(bigPictuer);
 
     bigPictureImg.children[0].src = obj.url;
