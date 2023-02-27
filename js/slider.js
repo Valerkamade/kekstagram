@@ -8,6 +8,7 @@ export default class Slider {
     this._effect = effect;
     this._effects = document.querySelector('.img-upload__effects');
     this._image = document.querySelector('.img-upload__preview').children[0];
+    this._effectLevel = document.querySelector('.img-upload__effect-level');
   }
 
   _createSlider() {
@@ -42,19 +43,18 @@ export default class Slider {
   }
 
   _handleSlider() {
-    if (this._effect.effect !== 'effect-none') {
+        if (this._effect.effect !== 'effect-none') {
       this._image.style.filter = `${this._effect.filter}(${this._valueElement.value})`;
-      this._sliderElement.classList.remove('hidden');
+      this._effectLevel.classList.remove('hidden');
       this._setParameters();
       this._getValueSlider();
     } else {
-      this._sliderElement.classList.add('hidden');
+      this._effectLevel.classList.add('hidden');
     }
   }
 
   _setEventListener() {
     this._input.addEventListener('change', () => {
-      this._sliderElement.classList.remove('hidden');
       this._handleSlider();
     })
   };
@@ -65,7 +65,7 @@ export default class Slider {
 
   updateOptionsSlider() {
     this._input = this._effects.querySelector(`#${this._effect.effect}`);
-    this._sliderElement.classList.add('hidden');
+    this._effectLevel.classList.add('hidden');
     this._setEventListener();
   }
 }

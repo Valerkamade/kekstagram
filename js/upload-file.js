@@ -13,36 +13,44 @@ const scaleControlValue = imgUploadForm.querySelector('.scale__control--value');
 const SCALE_MAX = 100;
 const SCALE_STEP = 25;
 const SCALE_MIN = 25;
+const imageStyle = imgUploadPreview.children[0].style;
 
 const setCloseUploadEventListener = () => {
   cancelButton.addEventListener('click', () => {
     hideElement(imgUploadOverlay);
     imgUploadForm.reset();
-    imgUploadPreview.children[0].style = '';
+    imageStyle.filter = '';
+    imageStyle.transform = '';
     removeFilter();
+    value = SCALE_MAX;
   });
 }
 
 const setKeydownEscpaeEventListener = () => {
   document.addEventListener('keydown', (evt) => {
-    if (evt.key === ('Escape' || 'Esc')) {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
       hideElement(imgUploadOverlay);
       imgUploadForm.reset();
-      imgUploadPreview.children[0].style = '';
+      imageStyle.filter = '';
+      imageStyle.transform = '';
       removeFilter();
+      value = SCALE_MAX;
     }
   });
 };
 
 let value = SCALE_MAX;
 
+const setTransform = () => {
+  scaleControlValue.value = `${value}%`
+  imageStyle.transform = `scale(${value / 100})`;
+}
+
 const setScaleControlSmallerEventListener = () => {
-  scaleControlValue.value = `${SCALE_MAX}%`;
   scaleControlSmaller.addEventListener('click', () => {
     if (value > SCALE_MIN) {
-      value = value - SCALE_STEP;
-      scaleControlValue.value = `${value}%`
-      imgUploadPreview.children[0].style = `transform: scale(${value / 100})`;
+      value -= SCALE_STEP;
+      setTransform();
     }
   });
 };
@@ -50,14 +58,14 @@ const setScaleControlSmallerEventListener = () => {
 const setScaleControlBiggerEventListener = () => {
   scaleControlBigger.addEventListener('click', () => {
     if (value < SCALE_MAX) {
-      value = value + SCALE_STEP;
-      scaleControlValue.value = `${value}%`
-      imgUploadPreview.children[0].style = `transform: scale(${value / 100})`;
-    } else {
-      value = SCALE_MAX;
+      value += SCALE_STEP;
+      setTransform();
     }
   });
 };
+
+setScaleControlSmallerEventListener();
+setScaleControlBiggerEventListener();
 
 const removeFilter = () => {
   return new Filter(collectfilters).removeClass();
@@ -66,13 +74,10 @@ const removeFilter = () => {
 export const setUoloadFotoEventListener = () => {
   uploadFile.addEventListener('change', () => {
     showElement(imgUploadOverlay);
-
-    // imgUploadPreview.children[0].src = uploadFile.path;
+    scaleControlValue.value = `${SCALE_MAX}%`;
+    // imgUploadPreview.children[0].src = uploadFile.value;
     setCloseUploadEventListener();
     setKeydownEscpaeEventListener();
-    setScaleControlSmallerEventListener();
-    setScaleControlBiggerEventListener()
-
   });
 };
 

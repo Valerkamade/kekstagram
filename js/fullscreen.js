@@ -30,7 +30,7 @@ const setCloseButtonEventListener = () => {
 
 const setKeydownEscpaeEventListener = () => {
   document.addEventListener('keydown', (evt) => {
-    if (evt.key === ('Escape' || 'Esc')) {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
       hideElement(bigPictuer);
     }
   });

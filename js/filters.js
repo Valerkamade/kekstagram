@@ -34,6 +34,5 @@ export default class Filter {
 
   getRun() {
     this._setEventListener();
-
   }
 }
