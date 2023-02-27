@@ -11,26 +11,27 @@ const cancelButton = bigPictuer.querySelector('.cancel');
 const commentTemplate = document.querySelector('#comment').content;
 const commentElement = commentTemplate.querySelector('.social__comment');
 
-const visibility = (element) => {
+const showElement = (element) => {
   element.classList.remove('hidden');
   document.body.classList.add('modal-open');
 };
 
-const hidden = (element) => {
+const hideElement = (element) => {
   element.classList.add('hidden');
   document.body.classList.remove('modal-open');
 };
 
 const setCloseButtonEventListener = () => {
   cancelButton.addEventListener('click', () => {
-    hidden(bigPictuer);
+    hideElement(bigPictuer);
+
   });
 };
 
 const setKeydownEscpaeEventListener = () => {
   document.addEventListener('keydown', (evt) => {
     if (evt.key === ('Escape' || 'Esc')) {
-      hidden(bigPictuer);
+      hideElement(bigPictuer);
     }
   });
 };
@@ -59,7 +60,7 @@ const renderComments = (obj) => {
 const setOpenBigPictuerEventListener = (photo, obj) => {
   photo.addEventListener('click', (evt) => {
     evt.preventDefault();
-    visibility(bigPictuer);
+    showElement(bigPictuer);
 
     bigPictureImg.children[0].src = obj.url;
     likesCount.textContent = obj.likes;
@@ -68,12 +69,12 @@ const setOpenBigPictuerEventListener = (photo, obj) => {
 
     renderComments(obj.comments);
 
-    hidden(socialCommentCount);
-    hidden(commentsLoader);
+    hideElement(socialCommentCount);
+    hideElement(commentsLoader);
 
     setCloseButtonEventListener();
     setKeydownEscpaeEventListener();
   });
 };
 
-export { setOpenBigPictuerEventListener };
+export { setOpenBigPictuerEventListener, showElement, hideElement };

@@ -20,8 +20,6 @@ const MAX_LIKS = 200;
 const MIN_COMMENTS = 1;
 const MAX_COMMENTS = 5;
 
-
-
 const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -117,6 +115,167 @@ const createPhoto = () => {
 
 const createPosts = () => new Array(POSTS_COUNT).fill(null).map(() => createPhoto());
 
-export { createPosts };
+const collectfilters = () => {
+  const filters = {};
+  const inputList = Array.from(document.querySelectorAll('.effects__radio'))
+  inputList.forEach((inputElement) => {
+    const item = inputElement.closest('.effects__item');
+    const span = item.querySelector('.effects__preview');
+    const filterId = inputElement.id;
+
+    filters[filterId] = span.classList[1];
+  });
+  // console.log(filters);
+  return filters;
+};
+
+const filterConfig = [
+  {
+    effect: 'effect-none',
+    // parametrs: {
+    //   max: 1,
+    //   min: 0,
+    //   step: 0.1,
+    // },
+  },
+  {
+    effect: 'effect-chrome',
+    parametrs: {
+      max: 1,
+      min: 0,
+      step: 0.1,
+    },
+    filter: 'grayscale',
+    mesure: '',
+  },
+  {
+    effect: 'effect-sepia',
+    parametrs: {
+      max: 1,
+      min: 0,
+      step: 0.1,
+    },
+    filter: 'sepia',
+    mesure: '',
+  },
+  {
+    effect: 'effect-marvin',
+    parametrs: {
+      max: 100,
+      min: 0,
+      step: 1,
+    },
+    filter: 'invert',
+    mesure: '%',
+  },
+  {
+    effect: 'effect-phobos',
+    parametrs: {
+      max: 3,
+      min: 0,
+      step: 0.1,
+    },
+    filter: 'blur',
+    mesure: 'px',
+  },
+  {
+    effect: 'effect-heat',
+    parametrs: {
+      max: 3,
+      min: 0,
+      step: 0.1,
+    },
+    filter: 'brightness',
+    mesure: '',
+  }
+]
 
 
+// const filterConfig = [
+//   {
+//     effect: 'none',
+//     class: 'effects__preview--none',
+//   },
+//   {
+//     effect: 'chrome',
+//     class: 'effects__preview--chrome',
+//     parametrs: {
+//       max: 1,
+//       min: 0,
+//       step: 0.1,
+//     },
+//   },
+//   {
+//     effect: 'sepia',
+//     class: 'effects__preview--sepia',
+//     parametrs: {
+//       max: 1,
+//       min: 0,
+//       step: 0.1,
+//     },
+//   },
+//   {
+//     effect: 'marvin',
+//     class: 'effects__preview--marvin',
+//     parametrs: {
+//       max: 100,
+//       min: 0,
+//       step: 1,
+//     },
+//   },
+//   {
+//     effect: 'phobos',
+//     class: 'effects__preview--phobos',
+//     parametrs: {
+//       max: 3,
+//       min: 0,
+//       step: 0.1,
+//     },
+//   },
+//   {
+//     effect: 'heat',
+//     class: 'effects__preview--phobos',
+//     parametrs: {
+//       max: 3,
+//       min: 0,
+//       step: 0.1,
+//     },
+//   },
+// ]
+
+export { createPosts, collectfilters, filterConfig };
+
+
+// const filterConfig = [
+//   // none: {
+//   //   max: 0,
+//   //   min: 0,
+//   //   step: 0,
+//   // },
+//   effect: chrome,
+//   parametrs: {
+//     max: 1,
+//     min: 0,
+//     step: 0.1,
+//   },
+//   sepia: {
+//     max: 1,
+//     min: 0,
+//     step: 0.1,
+//   },
+//   marvin: {
+//     max: 100,
+//     min: 0,
+//     step: 1,
+//   },
+//   phobos: {
+//     max: 3,
+//     min: 0,
+//     step: 0.1,
+//   },
+//   heat: {
+//     max: 3,
+//     min: 0,
+//     step: 0.1,
+//   },
+// ]

@@ -2,7 +2,7 @@
   "name": "kekstagram",
   "version": "22.0.0",
   "private": true,
-  "description": "Личный проект «{{projectTitle}}» от HTML Academy",
+  "description": "Личный проект «Кексограмм» от HTML Academy",
   "repository": {
     "type": "git",
     "url": "{{sshUrl}}"
@@ -14,8 +14,11 @@
     "eslint-plugin-react": "^7.32.1"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "nouislider": "^15.7.0"
+  },
   "scripts": {
+    
     "start": "browser-sync start --server --no-ui --files \"js/**/*.js\"",
     "test": "eslint js/"
   },
