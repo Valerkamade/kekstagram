@@ -1,7 +1,7 @@
 import Filter from './filters.js';
 import Slider from './slider.js';
 import Vlidation from './valdation.js';
-import Api from './api.js';
+import Api from './Api.js';
 import Popup from './Popup.js';
 import { renderPhoto } from './photo.js';
 import { collectfilters, filterConfig, apiConfig } from './data.js';
