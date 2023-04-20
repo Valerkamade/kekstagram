@@ -37,6 +37,7 @@
           <div class="img-upload__wrapper">
             <h2 class="img-upload__title visually-hidden">Загрузка фотографии</h2>
             <form class="img-upload__form" id="upload-select-image"
+              action="https://23.javascript.pages.academy/kekstagram/data"
               method="post" enctype="multipart/form-data" autocomplete="off">
               <!-- Изначальное состояние поля для загрузки изображения -->
               <fieldset class="img-upload__start">
@@ -139,8 +140,8 @@
                           visually-hidden" name="effect" id="effect-heat"
                           value="heat">
                         <label for="effect-heat" class="effects__label">
-                          <span class="effects__preview effects__preview--heat">Превью
-                            эффекта Зной</span>
+                          <span class="effects__preview effects__preview--heat">
+                            Превью эффекта Зной</span>
                           Зной
                         </label>
                       </li>
@@ -152,7 +153,7 @@
                     <input class="text__hashtags" name="hashtags"
                       placeholder="#ХэшТег">
                     <textarea class="text__description" name="description"
-                      placeholder="Ваш комментарий..."></textarea>
+                      placeholder="Ваш комментарий..." maxlength="140"></textarea>
                   </fieldset>
 
                   <!-- Кнопка для отправки данных на сервер -->
@@ -184,7 +185,7 @@
             <div class="social__header">
               <img class="social__picture" src="img/avatar-1.svg" alt="Аватар
                 автора фотографии" width="35" height="35">
-              <p class="social__caption">Тестим новую камеру! =)</p>
+              <p class="social__caption">Тестим новую камеру!</p>
               <p class="social__likes">Нравится <span class="likes-count">356</span></p>
             </div>
 
@@ -272,6 +273,16 @@
         <p class="social__text"></p>
       </li>
     </template>
+
+    <!-- Сообщение с ошибкой загрузки с сервера -->
+    <!-- <template id="error-api">
+      <section class="error error-api">
+        <div class="error__inner">
+          <h2 class="error__title ">Ошибка загрузки файла</h2>
+          <button type="button" class="error__button">Загрузить другой файл</button>
+        </div>
+      </section>
+    </template> -->
 
     <!-- Сообщение с ошибкой загрузки изображения -->
     <template id="error">

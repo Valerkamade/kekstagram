@@ -10,7 +10,7 @@ export default class Filter {
     return this._effects.querySelector('input:checked').id;
   }
 
-  _hendelCheckFilter() {
+  _handelCheckFilter() {
     this._classEffect = /effects__preview--.*/;
     this._effect = /(?<=effects__preview--).*/;
     this._image.classList.remove(this._classEffect.exec(this._image.className.split(' '))[0]);
@@ -21,7 +21,7 @@ export default class Filter {
     this._image.classList.add('effects__preview--none');
     this._inputs.forEach((input) => {
       input.addEventListener('change', () => {
-        this._hendelCheckFilter();
+        this._handelCheckFilter();
         this._inputId = input.id;
       });
     });

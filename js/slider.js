@@ -1,6 +1,3 @@
-// import noUiSlider from 'nouislider';
-// import 'nouislider/dist/nouislider.css'
-
 export default class Slider {
   constructor(effect) {
     this._sliderElement = document.querySelector('.effect-level__slider');
@@ -43,7 +40,7 @@ export default class Slider {
   }
 
   _handleSlider() {
-        if (this._effect.effect !== 'effect-none') {
+    if (this._effect.effect !== 'effect-none') {
       this._image.style.filter = `${this._effect.filter}(${this._valueElement.value})`;
       this._effectLevel.classList.remove('hidden');
       this._setParameters();
@@ -63,9 +60,13 @@ export default class Slider {
     this._createSlider();
   }
 
-  updateOptionsSlider() {
-    this._input = this._effects.querySelector(`#${this._effect.effect}`);
+  reset() {
     this._effectLevel.classList.add('hidden');
+  }
+
+  updateOptionsSlider() {
+    this._effectLevel.classList.add('hidden');
+    this._input = this._effects.querySelector(`#${this._effect.effect}`);
     this._setEventListener();
   }
 }

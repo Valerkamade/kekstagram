@@ -1,8 +1,9 @@
-import { showElement, hideElement } from './fullscreen.js';
+import Slider from './slider.js';
 import Filter from './filters.js';
+import { showElement, hideElement } from './fullscreen.js';
 import { collectfilters } from './data.js';
 
-const imgUploadForm = document.querySelector('.img-upload__form');
+export const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadFile = imgUploadForm.querySelector('#upload-file');
 const imgUploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
 const cancelButton = imgUploadOverlay.querySelector('.cancel');
@@ -15,14 +16,24 @@ const SCALE_STEP = 25;
 const SCALE_MIN = 25;
 const imageStyle = imgUploadPreview.children[0].style;
 
+const resetSlider = () => {
+  const slider = new Slider();
+  return slider.reset();
+}
+
+export const handelCloseUpload = () => {
+  hideElement(imgUploadOverlay);
+  imgUploadForm.reset();
+  imageStyle.filter = '';
+  imageStyle.transform = '';
+  removeFilter();
+  value = SCALE_MAX;
+  resetSlider();
+}
+
 const setCloseUploadEventListener = () => {
   cancelButton.addEventListener('click', () => {
-    hideElement(imgUploadOverlay);
-    imgUploadForm.reset();
-    imageStyle.filter = '';
-    imageStyle.transform = '';
-    removeFilter();
-    value = SCALE_MAX;
+    handelCloseUpload();
   });
 }
 
@@ -35,6 +46,7 @@ const setKeydownEscpaeEventListener = () => {
       imageStyle.transform = '';
       removeFilter();
       value = SCALE_MAX;
+      resetSlider();
     }
   });
 };
@@ -71,13 +83,16 @@ const removeFilter = () => {
   return new Filter(collectfilters).removeClass();
 }
 
-export const setUoloadFotoEventListener = () => {
+export const setUploadFotoEventListener = () => {
   uploadFile.addEventListener('change', () => {
     showElement(imgUploadOverlay);
     scaleControlValue.value = `${SCALE_MAX}%`;
-    // imgUploadPreview.children[0].src = uploadFile.value;
+    imgUploadPreview.children[0].style.objectFit = 'cover';
+    imgUploadPreview.children[0].style.width = '100%';
+    imgUploadPreview.children[0].src = window.URL.createObjectURL(uploadFile.files[0]);
     setCloseUploadEventListener();
     setKeydownEscpaeEventListener();
   });
 };
+
 

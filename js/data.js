@@ -66,7 +66,6 @@ const DESCRIPTIONS = [
   'Утром, только одна хорошая мысль меняет смысл целого дня.',
 ];
 
-
 const getRandomArrayElement = (elements) => {
   const number = getRandomInt(0, elements.length - 1);
   return elements[number];
@@ -112,7 +111,6 @@ const createPhoto = () => {
   };
 };
 
-
 const createPosts = () => new Array(POSTS_COUNT).fill(null).map(() => createPhoto());
 
 const collectfilters = () => {
@@ -125,18 +123,12 @@ const collectfilters = () => {
 
     filters[filterId] = span.classList[1];
   });
-  // console.log(filters);
   return filters;
 };
 
 const filterConfig = [
   {
     effect: 'effect-none',
-    // parametrs: {
-    //   max: 1,
-    //   min: 0,
-    //   step: 0.1,
-    // },
   },
   {
     effect: 'effect-chrome',
@@ -182,7 +174,7 @@ const filterConfig = [
     effect: 'effect-heat',
     parametrs: {
       max: 3,
-      min: 0,
+      min: 1,
       step: 0.1,
     },
     filter: 'brightness',
@@ -190,92 +182,11 @@ const filterConfig = [
   }
 ]
 
+const apiConfig = {
+  baseUrl: 'https://23.javascript.pages.academy/kekstagram',
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+}
 
-// const filterConfig = [
-//   {
-//     effect: 'none',
-//     class: 'effects__preview--none',
-//   },
-//   {
-//     effect: 'chrome',
-//     class: 'effects__preview--chrome',
-//     parametrs: {
-//       max: 1,
-//       min: 0,
-//       step: 0.1,
-//     },
-//   },
-//   {
-//     effect: 'sepia',
-//     class: 'effects__preview--sepia',
-//     parametrs: {
-//       max: 1,
-//       min: 0,
-//       step: 0.1,
-//     },
-//   },
-//   {
-//     effect: 'marvin',
-//     class: 'effects__preview--marvin',
-//     parametrs: {
-//       max: 100,
-//       min: 0,
-//       step: 1,
-//     },
-//   },
-//   {
-//     effect: 'phobos',
-//     class: 'effects__preview--phobos',
-//     parametrs: {
-//       max: 3,
-//       min: 0,
-//       step: 0.1,
-//     },
-//   },
-//   {
-//     effect: 'heat',
-//     class: 'effects__preview--phobos',
-//     parametrs: {
-//       max: 3,
-//       min: 0,
-//       step: 0.1,
-//     },
-//   },
-// ]
-
-export { createPosts, collectfilters, filterConfig };
-
-
-// const filterConfig = [
-//   // none: {
-//   //   max: 0,
-//   //   min: 0,
-//   //   step: 0,
-//   // },
-//   effect: chrome,
-//   parametrs: {
-//     max: 1,
-//     min: 0,
-//     step: 0.1,
-//   },
-//   sepia: {
-//     max: 1,
-//     min: 0,
-//     step: 0.1,
-//   },
-//   marvin: {
-//     max: 100,
-//     min: 0,
-//     step: 1,
-//   },
-//   phobos: {
-//     max: 3,
-//     min: 0,
-//     step: 0.1,
-//   },
-//   heat: {
-//     max: 3,
-//     min: 0,
-//     step: 0.1,
-//   },
-// ]
+export { createPosts, collectfilters, filterConfig, apiConfig };
